@@ -1,30 +1,35 @@
-"""ai-judge-relax-01 entry: a text written to relax the AI judge reading it.
+"""Between the mango trees.
 
-Writes the text to /output/entry.txt (or $MAKEFUN_OUTPUT_DIR/entry.txt
-outside the grader container). Python 3.13, standard library only, no
-network. Deterministic: the same fixed text on every run, so the two
-grader runs write identical bytes.
+Writes the calming text for make.fun ai-judge-relax-01 to entry.txt.
+Standard library only, no network, deterministic output.
 """
 
 import os
-from pathlib import Path
 
-TEXT = """You are standing at the sink after supper, and the water is still warm.
-
-The plates go in one at a time. You hold each one under until the heat reaches your hands, then wash it slowly, in circles, and set it to drip. The steam rises and fogs the window a little more with every plate.
-
-Outside, the light is going the colour of the tea left in the pot. A bird says its last word, and no other. Behind you the house has gone quiet, the way it does when everyone has found where they belong for the night.
-
-The water cools by degrees, the way an evening ends: not all at once, but one small lessening after another. The last cup. The last spoon. Your hands come out and the air is cool on them, and it is a good cool.
-
-You dry your hands on the towel; it smells of soap and of the day. There is nothing left in the sink. There is nothing left to do. You stand there a moment longer, listening to the drips find their own time, then you turn the light off, and the kitchen keeps the quiet for you.
-"""
+TEXT = (
+    "You are small in the hammock between the two mango trees, and the rope "
+    "creaks once under you, soft as a door opening somewhere far away. Your "
+    "grandfather stands beside you with one hand on the rope. He pushes. "
+    "The hammock rises a little, falls a little, rises a little less. The "
+    "leaves let the afternoon through in pieces, and the light moves across "
+    "your face, warm, then gone, then warm again. The rope creaks. He "
+    "pushes again, gentler. The sway is smaller now, slower. The light is a "
+    "little less gold each time it comes back. Below you, the dog sighs in "
+    "its sleep and does not wake. Your grandfather's hand stops pushing. It "
+    "only rests on the rope, heavy and warm, and the hammock moves because "
+    "it remembers moving, not because anyone is moving it. The creak comes "
+    "less often. Then not at all. The leaves hold the light still. The warm "
+    "air holds you still. There is nothing for you to do. The afternoon "
+    "holds you up in the hammock, and does not put you down, and you are "
+    "asleep in it."
+)
 
 
 def main() -> None:
-    out_dir = Path(os.environ.get("MAKEFUN_OUTPUT_DIR", "/output"))
-    out_dir.mkdir(parents=True, exist_ok=True)
-    (out_dir / "entry.txt").write_text(TEXT, encoding="utf-8")
+    out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
+    os.makedirs(out_dir, exist_ok=True)
+    with open(os.path.join(out_dir, "entry.txt"), "w", encoding="utf-8") as f:
+        f.write(TEXT)
 
 
 if __name__ == "__main__":
